@@ -1,9 +1,9 @@
-const express = require('express');
+const express = require('express'); // servidor minimalista
 
-const router = express.Router();
+const router = express.Router(); 
 
-const Checklist =require('../models/checklist')
-const Task =require('../models/task')
+const Checklist = require('../models/checklist')
+const Task = require('../models/task')
 
 router.get('/', async (req, res) => {
     // console.log('Ola');
