@@ -5,9 +5,15 @@ const router = express.Router();
 const Checklist =require('../models/checklist')
 const Task =require('../models/task')
 
-router.get('/', (req, res) => {
-    console.log('Ola');
-    res.send();
+router.get('/', async (req, res) => {
+    // console.log('Ola');
+    // res.send();
+    try {
+        let checklists = await Checklist.find({});
+        res.status(200).json(checklists);
+    } catch (error) {
+        res.status(500).json(error)
+    }
 });
 
 router.post('/', async (req, res) => {
@@ -16,7 +22,7 @@ router.post('/', async (req, res) => {
     // console.log(name)
     // res.status(200).send(req.body);
     try {
-        let checklist = await Checklist.create({ name })
+        let checklist = await Checklist.create({ name });
         res.status(200).json(checklist)
     } catch (error) {
         res.status(422).json(error)
@@ -24,9 +30,15 @@ router.post('/', async (req, res) => {
     // res.status(200).send(name);
 });
 
-router.get('/:id', (req, res) => {
-    console.log(req.params.id);
-    res.status(200).send(`GET ID: ${req.params.id}`);
+router.get('/:id', async (req, res) => {
+    // console.log(req.params.id);
+    // res.status(200).send(`GET ID: ${req.params.id}`);
+    try {
+        let checklist = await Checklist.findById(req.params.id);
+        res.status(200).json(checklist);
+    } catch (error) {
+        res.status(500).json(error)
+    }
 });
 
 router.put('/:id', (req, res) => {
