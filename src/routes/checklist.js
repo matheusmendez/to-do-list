@@ -54,9 +54,15 @@ router.put('/:id', async (req, res) => {
     }
 });
 
-router.delete('/:id', (req, res) => {
-    console.log(req.params.id);
-    res.status(200).send(`DELETE ID: ${req.params.id}`);
+router.delete('/:id', async (req, res) => {
+    // console.log(req.params.id);
+    // res.status(200).send(`DELETE ID: ${req.params.id}`);
+    try {
+        let checklist = await Checklist.findByIdAndRemove(req.params.id);
+        res.status(200).json(checklist)
+    } catch (error) {
+        res.status(422).json(error);
+    }
 });
 
 module.exports = router;
