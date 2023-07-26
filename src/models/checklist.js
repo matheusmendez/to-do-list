@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 
 const checklistSchema = mongoose.Schema({
     name: {type: String, required: true},
@@ -9,4 +8,4 @@ const checklistSchema = mongoose.Schema({
     }]
 });
 
-modelNames.exports = mongoose.model('Checklist', checklistSchema);
+module.exports = mongoose.model('Checklist', checklistSchema);

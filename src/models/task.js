@@ -1,9 +1,8 @@
 const mongoose = require('mongoose');
-mongoose.Promise = global.Promise;
 
 const taskSchema = mongoose.Schema({
     name: {type: String, required: true},
-    name: {type: Boolean, default: false},
+    done: {type: Boolean, default: false},
     checklist: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Checklist',
@@ -11,4 +10,4 @@ const taskSchema = mongoose.Schema({
     }
 });
 
-modelNames.exports = mongoose.model('Task', taskSchema);
+module.exports = mongoose.model('Task', taskSchema);
